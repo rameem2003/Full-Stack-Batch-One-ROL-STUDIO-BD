@@ -1,7 +1,7 @@
 import React from "react";
 import TodoCard from "./TodoCard";
 
-const TodoList = ({ todos, setTodos }) => {
+const TodoList = ({ todos, setTodos, updateTodo }) => {
   console.log(todos);
 
   return (
@@ -11,7 +11,14 @@ const TodoList = ({ todos, setTodos }) => {
       {/* {todos.map((item, i) =)} */}
 
       {todos.map((item, i) => {
-        return <TodoCard setTodos={setTodos} todos={todos} item={item} />;
+        return (
+          <TodoCard
+            updateTodo={updateTodo}
+            setTodos={setTodos}
+            todos={todos}
+            item={item}
+          />
+        );
       })}
     </section>
   );

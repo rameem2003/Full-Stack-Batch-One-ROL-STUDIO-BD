@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const TodoCard = ({ item, todos, setTodos }) => {
+const TodoCard = ({ item, todos, setTodos, updateTodo }) => {
   const [newTodo, setNewTodo] = useState("");
   const [isUpdate, setIsUpdate] = useState(false);
   const handleDelete = () => {
@@ -22,10 +22,11 @@ const TodoCard = ({ item, todos, setTodos }) => {
   };
 
   const handleNewTodoUpdate = () => {
-    let updateData = todos.find((todo) => todo.id == item.id);
-    updateData.todo = newTodo;
+    console.log("id:", item.id);
+    console.log("newTodo:", newTodo);
 
-    console.log(updateData);
+    updateTodo(item.id, newTodo);
+    setIsUpdate(false);
   };
 
   // ! = =
