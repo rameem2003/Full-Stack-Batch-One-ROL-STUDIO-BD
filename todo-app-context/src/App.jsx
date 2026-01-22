@@ -5,28 +5,25 @@ import { TodoContext } from "./context/TodoContextProvider";
 // import { todos } from "./data/todo";
 
 const App = () => {
+  // const doSomeThing = () => {
+  //   let array = [
+  //     { id: 1, name: "ANIK" },
+  //     { id: 2, name: "Rameem" },
+  //   ];
 
-  let data = useContext(TodoContext)
-  console.log(data);
-  
+  //   localStorage.setItem("data", JSON.stringify(array));
+  // };
 
-  const [todos, setTodos] = useState([{ id: 1, todo: "Todo" }]);
-  //  [{id: 1, todo: 'Todo'}]
-
-  const updateTodo = (id, newTodo) => {
-    // step 1: find the todo item by id
-    // step 2: set the updated todo item in the targeted todo id
-    setTodos((prev) =>
-      prev.map((singleTodo) =>
-        singleTodo.id == id ? { ...singleTodo, todo: newTodo } : singleTodo
-      )
-    );
-  };
+  // // get the data from the local storage
+  // let data = JSON.parse(localStorage.getItem("data"));
+  // console.log(data[0]);
 
   return (
     <div>
       <Input />
-      <TodoList setTodos={setTodos} updateTodo={updateTodo} />
+      <TodoList />
+
+      {/* <button onClick={doSomeThing}>Add</button> */}
     </div>
   );
 };

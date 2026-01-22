@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { TodoContext } from "../context/TodoContextProvider";
 
-const TodoCard = ({ item, todos, setTodos, updateTodo }) => {
+const TodoCard = ({ item }) => {
+  let { deleteTodo, updateTodo } = useContext(TodoContext);
   const [newTodo, setNewTodo] = useState("");
   const [isUpdate, setIsUpdate] = useState(false);
+
   const handleDelete = () => {
-    let newData = todos.filter((todo) => todo.id !== item.id);
-    setTodos(newData);
-    // console.log(newData);
+    deleteTodo(item.id);
   };
 
   const handleUpdateUi = () => {
@@ -22,8 +23,8 @@ const TodoCard = ({ item, todos, setTodos, updateTodo }) => {
   };
 
   const handleNewTodoUpdate = () => {
-    console.log("id:", item.id);
-    console.log("newTodo:", newTodo);
+    // console.log("id:", item.id);
+    // console.log("newTodo:", newTodo);
 
     updateTodo(item.id, newTodo);
     setIsUpdate(false);
