@@ -111,7 +111,7 @@ const Experience = () => {
           </div>
         </div>
 
-        <div className=" mt-[25px] flex flex-col md:flex-wrap md:flex-row items-center justify-between gap-7">
+        <div className=" mt-[25px] ">
           <Swiper
             slidesPerView={4}
             spaceBetween={30}
@@ -126,6 +126,20 @@ const Experience = () => {
             //   swiper.navigation.update();
             // }}
 
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                // spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+            }}
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper;
             }}
@@ -138,9 +152,9 @@ const Experience = () => {
           >
             {data.map((card, index) => (
               <SwiperSlide>
-                <div className=" w-full md:w-[48%] lg:w-auto relative overflow-hidden">
+                <div className="  relative overflow-hidden">
                   <img
-                    className=" w-full h-full rounded-[10px]"
+                    className=" w-full  rounded-[10px]"
                     src={card.contentImage}
                     alt={card.title}
                   />
