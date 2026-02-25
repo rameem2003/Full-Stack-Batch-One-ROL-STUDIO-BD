@@ -9,6 +9,7 @@ import Rootlayout from "./Layouts/Rootlayout";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import ProtectedRoute from "./Layouts/ProtectedRoute";
+import Register from "./pages/Register";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/*" element={<Error />} />
           </Route>
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </>
