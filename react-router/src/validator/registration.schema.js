@@ -4,7 +4,7 @@ export const registrationShchema = z.object({
   name: z
     .string()
     .nonempty()
-    .min(3, { message: "Name must be at least 3 characters long" }),
+    .min(3, { message: "আপনি অন্তত ৩ অক্ষরের নাম লিখুন" }),
   email: z.string().email({ message: "Wrong Email Address" }),
   password: z
     .string()

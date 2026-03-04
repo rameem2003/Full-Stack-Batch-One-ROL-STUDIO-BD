@@ -1,22 +1,21 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registrationShchema } from "../validator/registration.schema";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 const Register = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(registrationShchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(errors);
+  // Hook form আমাকে ফর্ম handle করে দেয়
+  // ZOD আমাকে ফর্ম validation করে দেয়
 
-    // console.log("Data uploaded");
-    // console.log(data);
+  const createAccount = (data) => {
+    console.log(data);
   };
 
   useEffect(() => {
@@ -36,7 +35,7 @@ const Register = () => {
           </div>
           <div className="flex items-center lg:p-12 p-8 bg-[#0C172C] h-full lg:w-11/12 lg:ml-auto">
             <form
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(createAccount)}
               className="max-w-lg w-full mx-auto"
             >
               <div className="mb-12">
