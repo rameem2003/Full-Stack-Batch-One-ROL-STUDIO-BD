@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formSchema } from "../validator/form.schema";
-import { ref, set } from "firebase/database";
+import { onValue, ref, remove, set } from "firebase/database";
 import { database } from "../config/firebase.config";
+import Card from "../components/Card";
 
 function generateId(length = 10) {
   const chars =
@@ -19,6 +20,7 @@ function generateId(length = 10) {
 }
 
 const Home = () => {
+  const [students, setStudents] = useState([]);
   const {
     register,
     handleSubmit,
@@ -32,6 +34,7 @@ const Home = () => {
     let id = generateId();
     try {
       await set(ref(database, `/users/${id}`), {
+        id,
         name: data.name,
         phone: data.phone,
         email: data.email,
@@ -42,6 +45,25 @@ const Home = () => {
       console.log(error);
     }
   };
+
+  const fetchData = async () => {
+    try {
+      const starCountRef = ref(database, "users/");
+      onValue(starCountRef, (snapshot) => {
+        let arr = [];
+        snapshot.forEach((item) => {
+          arr.push(item.val());
+        });
+        setStudents(arr);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   // let navigate = useNavigate();
   return (
@@ -155,6 +177,18 @@ const Home = () => {
           Submit
         </button>
       </form>
+
+      <div>
+        <h1 className=" text-blue-600 text-2xl font-bold mb-8">
+          Students List
+        </h1>
+
+        <div>
+          {students.map((item, i) => (
+            <Card item={item} key={i} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
